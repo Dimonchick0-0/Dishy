@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/invitationFragment2">
+    <fragment
+        android:id="@+id/invitationFragment2"
+        android:name="com.example.dishy.presentation.fragment.InvitationFragment"
+        android:label="fragment_invitation"
+        tools:layout="@layout/fragment_invitation" >
+        <action
+            android:id="@+id/action_invitationFragment2_to_chooseDishFragment"
+            app:destination="@id/chooseDishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseDishFragment"
+        android:name="com.example.dishy.presentation.fragment.ChooseDishFragment"
+        android:label="fragment_choose_dish"
+        tools:layout="@layout/fragment_choose_dish" />
+</navigation>
