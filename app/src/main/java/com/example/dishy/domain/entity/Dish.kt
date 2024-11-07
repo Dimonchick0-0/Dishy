@@ -5,7 +5,6 @@ data class Dish(
     val image: Int = 0,
     val titleDish: String = UNDEFINED_TITLE,
     val descriptionDish: String = UNDEFINED_DESCR
-
 ) {
     companion object {
         const val UNDEFINED_ID = 0

@@ -1,9 +1,16 @@
 package com.example.dishy.data
 
+import com.example.dishy.R
 import com.example.dishy.domain.entity.Dish
 
 class DishyList {
-    fun setListDish(): Dish {
-        TODO() // Установить список
+    fun setListDish(): MutableList<Dish> {
+        return mutableListOf(
+            Dish(
+                image = R.drawable.chickensoup,
+                titleDish = "Куринный суп",
+                descriptionDish = "Всеми горячо любимый куринный супчик!"
+            )
+        )
     }
 }

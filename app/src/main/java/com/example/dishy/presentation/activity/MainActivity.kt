@@ -1,4 +1,4 @@
-package com.example.dishy.presentation
+package com.example.dishy.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -53,6 +53,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     // navigation
     implementation(libs.androidx.navigation.fragment)
+    // Dagger 2
+    implementation (libs.dagger)
+    kapt (libs.dagger.compiler)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

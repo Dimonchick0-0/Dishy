@@ -7,4 +7,6 @@
     <string name="text_descr_screen_second">Нажмите на кнопку, чтобы выбрать и заказать вкусные блюда.
         Приятного аппетита!</string>
     <string name="btn_choose">Выбрать блюда</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
