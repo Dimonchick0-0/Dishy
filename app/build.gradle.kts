@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     // Dagger 2
     implementation (libs.dagger)
+    // Glide
+    implementation (libs.glide)
     kapt (libs.dagger.compiler)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.core.ktx)
