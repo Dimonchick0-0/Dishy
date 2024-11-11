@@ -1,6 +1,6 @@
 package com.example.dishy.domain.entity
 
-data class Dish(
+data class Dish (
     val id: Int = UNDEFINED_ID,
     val image: Int = 0,
     val titleDish: String = UNDEFINED_TITLE,
