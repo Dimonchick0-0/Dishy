@@ -7,7 +7,7 @@ import javax.inject.Inject
 class AddDishToBasket @Inject constructor(
     private val repository: DishRepository
 ) {
-    operator fun invoke(dish: Dish) {
+    suspend fun invoke(dish: Dish) {
         repository.addDishToBasket(dish)
     }
 }

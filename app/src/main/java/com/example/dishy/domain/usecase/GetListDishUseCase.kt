@@ -5,7 +5,7 @@ import com.example.dishy.domain.entity.Dish
 import com.example.dishy.domain.repository.DishRepository
 import javax.inject.Inject
 
-class GetListDishUseCase (
+class GetListDishUseCase @Inject constructor (
     private val repository: DishRepository
 ) {
     operator fun invoke(): LiveData<List<Dish>> {
