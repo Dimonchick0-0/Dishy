@@ -5,28 +5,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dishy.R
 import com.example.dishy.databinding.FragmentChooseDishBinding
+import com.example.dishy.di.DaggerApplicationComponent
 import com.example.dishy.presentation.recycler.DishAdapter
 import com.example.dishy.presentation.viewmodel.ChooseDishViewModel
-import com.example.dishy.presentation.viewmodel.MainViewModelFactory
+import com.example.dishy.presentation.viewmodel.lazyViewModel
+import javax.inject.Inject
 
 class ChooseDishFragment : Fragment() {
+
+    private val component by lazy {
+        DaggerApplicationComponent.builder()
+            .application(requireActivity().application)
+            .build()
+    }
+
+    private val vm: ChooseDishViewModel by lazyViewModel { stateHandle ->
+        component.getChooseDishViewModel().create(stateHandle)
+    }
 
     private var _binding: FragmentChooseDishBinding? = null
     private val binding: FragmentChooseDishBinding
         get() = _binding ?: throw RuntimeException("FragmentChooseDishBinding == null")
-
-    private val vm by lazy {
-        ViewModelProvider(
-            this,
-            MainViewModelFactory()
-        )[ChooseDishViewModel::class.java]
-    }
 
     private lateinit var dishAdapter: DishAdapter
 
@@ -39,6 +42,7 @@ class ChooseDishFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onViewCreated(view, savedInstanceState)
         setupDishList()
         initAdapter(view.context)

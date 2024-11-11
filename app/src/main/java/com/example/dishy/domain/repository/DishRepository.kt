@@ -6,5 +6,5 @@ import com.example.dishy.domain.entity.Dish
 interface DishRepository {
     fun getDish(): LiveData<List<Dish>>
 
-    fun addDishToBasket(dish: Dish)
+    suspend fun addDishToBasket(dish: Dish)
 }
