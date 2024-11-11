@@ -19,6 +19,10 @@ class DishRepositoryImpl @Inject constructor() : DishRepository {
         return dishListLd
     }
 
+    override fun addDishToBasket(dish: Dish) {
+        TODO("Not yet implemented")
+    }
+
     private fun setList(list: MutableList<Dish>) {
         dishList = list
         updateList()
