@@ -14,6 +14,8 @@ import java.net.URL
 
 class DishAdapter: ListAdapter<Dish, DishAdapter.DishViewHolder>(DishItemCallbackDiffUtil()) {
 
+    var onItemClickListener: ((Dish) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.dish_item,
@@ -26,6 +28,9 @@ class DishAdapter: ListAdapter<Dish, DishAdapter.DishViewHolder>(DishItemCallbac
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val item = getItem(position)
         holder.setDishItem(item)
+        holder.binding.btnOrder.setOnClickListener {
+            onItemClickListener?.invoke(item)
+        }
     }
 
     class DishViewHolder(item: View): RecyclerView.ViewHolder(item) {
