@@ -1,4 +1,4 @@
-package com.example.dishy.presentation.recycler
+package com.example.dishy.presentation.recycler.dishAdapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.dishy.domain.entity.Dish

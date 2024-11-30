@@ -1,5 +1,6 @@
 package com.example.dishy.data.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,5 +10,6 @@ data class DishBasketDatabase (
     val id: Int,
     val image: Int,
     val titleDish: String,
-    val descriptionDish: String
+    val descriptionDish: String,
+    val basketID: Boolean
 )

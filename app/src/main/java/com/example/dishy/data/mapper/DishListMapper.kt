@@ -15,9 +15,10 @@ class DishListMapper @Inject constructor() {
         id = dish.id,
         image = dish.image,
         titleDish = dish.titleDish,
-        descriptionDish = dish.descriptionDish
+        descriptionDish = dish.descriptionDish,
+        basketID = dish.basketID
     )
-    fun mapListDbModelToListEntity(list: List<DishBasketDatabase>) = list.map {
+    fun mapListDbModelToListEntity(list: MutableList<DishBasketDatabase>) = list.map {
         mapDbModelToEntity(it)
     }
 }

@@ -17,5 +17,17 @@
         android:id="@+id/chooseDishFragment"
         android:name="com.example.dishy.presentation.fragment.ChooseDishFragment"
         android:label="fragment_choose_dish"
-        tools:layout="@layout/fragment_choose_dish" />
+        tools:layout="@layout/fragment_choose_dish" >
+        <action
+            android:id="@+id/action_chooseDishFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.dishy.presentation.fragment.BasketFragment"
+        android:label="BasketFragment" >
+        <action
+            android:id="@+id/action_basketFragment_to_chooseDishFragment"
+            app:destination="@id/chooseDishFragment" />
+    </fragment>
 </navigation>

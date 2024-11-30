@@ -15,6 +15,11 @@ class DishyList {
                 image = R.drawable.chickensoup,
                 titleDish = "Куринный суп номер 2",
                 descriptionDish = "Всеми горячо любимый куринный супчик!"
+            ),
+            Dish(
+                image = R.drawable.salat,
+                titleDish = "Итальянский салат с копчённой курицей",
+                descriptionDish = "Попробуйте Италию на вкус..."
             )
         )
     }

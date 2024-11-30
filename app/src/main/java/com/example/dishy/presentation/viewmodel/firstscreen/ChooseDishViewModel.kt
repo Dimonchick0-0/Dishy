@@ -1,5 +1,7 @@
-package com.example.dishy.presentation.viewmodel
+package com.example.dishy.presentation.viewmodel.firstscreen
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,9 +21,19 @@ class ChooseDishViewModel @AssistedInject constructor(
 
     val dishList = getListDishUseCase()
 
+    private var _dish = MutableLiveData<Dish>()
+    val dish: LiveData<Dish> = _dish
+
     fun addDish(dish: Dish) {
         viewModelScope.launch {
-            repository.addDishToBasket(dish)
+            val newDish = dish.copy(
+                id = dish.id,
+                image = dish.image,
+                titleDish = dish.titleDish,
+                descriptionDish = dish.descriptionDish,
+                basketID = true
+            )
+            repository.addDishToBasket(newDish)
         }
     }
 

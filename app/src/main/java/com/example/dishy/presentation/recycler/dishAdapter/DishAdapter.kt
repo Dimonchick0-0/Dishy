@@ -1,16 +1,14 @@
-package com.example.dishy.presentation.recycler
+package com.example.dishy.presentation.recycler.dishAdapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dishy.R
 import com.example.dishy.databinding.DishItemBinding
 import com.example.dishy.domain.entity.Dish
-import java.net.URL
 
 class DishAdapter: ListAdapter<Dish, DishAdapter.DishViewHolder>(DishItemCallbackDiffUtil()) {
 

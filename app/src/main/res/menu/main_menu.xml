@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dishHome"
+        android:icon="@drawable/is_home"
+        android:title="@string/list_dish"
+        android:orderInCategory="1"
+        />
+    <item
+        android:id="@+id/dishBasket"
+        android:icon="@drawable/is_basket"
+        android:title="@string/basket"
+        android:orderInCategory="2"/>
+</menu>

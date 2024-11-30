@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs")
 }
@@ -13,6 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.example.dishy"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -47,7 +48,7 @@ dependencies {
     implementation (libs.androidx.lifecycle.livedata.ktx)
     // room
     implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     // coroutine
     implementation(libs.kotlinx.coroutines.core)

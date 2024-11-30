@@ -1,19 +1,16 @@
-package com.example.dishy.presentation.viewmodel
+package com.example.dishy.presentation.viewmodel.secondscreen
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.savedstate.SavedStateRegistryOwner
-import com.example.dishy.domain.usecase.GetListDishUseCase
-import com.example.dishy.presentation.fragment.ChooseDishFragment
-import javax.inject.Inject
+import com.example.dishy.presentation.fragment.BasketFragment
 
-class MainViewModelFactory<T: ViewModel>(
+class BasketViewModelFactory<T: ViewModel>(
     savedStateRegistryOwner: SavedStateRegistryOwner,
     private val create: (stateHandle: SavedStateHandle) -> T
-) : AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
+): AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
     override fun <T : ViewModel> create(
         key: String,
         modelClass: Class<T>,
@@ -23,8 +20,8 @@ class MainViewModelFactory<T: ViewModel>(
     }
 }
 
-inline fun <reified T : ViewModel> ChooseDishFragment.lazyViewModel(
+inline fun <reified T : ViewModel> BasketFragment.lazyViewModel(
     noinline create: (stateHandle: SavedStateHandle) -> T
 ) = viewModels<T> {
-    MainViewModelFactory(this, create)
+    BasketViewModelFactory(this, create)
 }
