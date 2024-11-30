@@ -2,15 +2,13 @@ package com.example.dishy.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.dishy.data.datasoutce.LocalDataSource
-import com.example.dishy.data.db.DishBasketDao
-import com.example.dishy.data.mapper.DishListMapper
+import com.example.dishy.data.datasoutce.LocalDataSourceImpl
 import com.example.dishy.domain.entity.Dish
 import com.example.dishy.domain.repository.DishRepository
 import javax.inject.Inject
 
 class DishRepositoryImpl @Inject constructor(
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSourceImpl
 ) : DishRepository {
     private val dishListLd = MutableLiveData<List<Dish>>()
     private val initDishList = DishyList()
@@ -26,6 +24,10 @@ class DishRepositoryImpl @Inject constructor(
 
     override suspend fun addDishToBasket(dish: Dish) {
         localDataSource.addDishToBasket(dish)
+    }
+
+    override fun loadAllDishBasket(): LiveData<List<Dish>> {
+        return localDataSource.loadAllDishBasket()
     }
 
     private fun setList(list: MutableList<Dish>) {

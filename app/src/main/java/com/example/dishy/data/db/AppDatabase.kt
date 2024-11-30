@@ -4,8 +4,9 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-@Database(entities = [DishBasketDatabase::class], version = 1, exportSchema = false)
+@Database(entities = [DishBasketDatabase::class], version = 19, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun dishBasket(): DishBasketDao
 
@@ -27,6 +28,8 @@ abstract class AppDatabase: RoomDatabase() {
                     AppDatabase::class.java,
                     DB_NAME
                 )
+                    .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = db
                 return db
