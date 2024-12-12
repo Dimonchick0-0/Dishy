@@ -7,4 +7,8 @@ interface LocalDataSource {
    suspend fun addDishToBasket(dish: Dish)
 
    fun loadAllDishBasket(): LiveData<List<Dish>>
+
+   suspend fun deleteDishItem(dish: Dish)
+
+   suspend fun updateItemDish(dish: Dish)
 }

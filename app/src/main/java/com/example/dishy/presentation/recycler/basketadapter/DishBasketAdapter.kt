@@ -1,6 +1,5 @@
 package com.example.dishy.presentation.recycler.basketadapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,8 @@ import com.example.dishy.domain.entity.Dish
 class DishBasketAdapter: ListAdapter<Dish, DishBasketAdapter.DishBasketViewHolder>
     (DishBasketItemCallbackDiffUtil()) {
 
+        var onItemDeleteClickListener: ((Dish) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishBasketViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.dish_basket_item,
@@ -26,10 +27,13 @@ class DishBasketAdapter: ListAdapter<Dish, DishBasketAdapter.DishBasketViewHolde
     override fun onBindViewHolder(holder: DishBasketViewHolder, position: Int) {
         val item = getItem(position)
         holder.setData(item)
+        holder.binding.btnDeleteBasket.setOnClickListener {
+            onItemDeleteClickListener?.invoke(item)
+        }
     }
 
     class DishBasketViewHolder(item: View): RecyclerView.ViewHolder(item) {
-        private val binding = DishBasketItemBinding.bind(item)
+        val binding = DishBasketItemBinding.bind(item)
         fun setData(dish: Dish) = with(binding) {
             Glide.with(itemView)
                 .load(dish.image)
@@ -37,5 +41,10 @@ class DishBasketAdapter: ListAdapter<Dish, DishBasketAdapter.DishBasketViewHolde
             tvDishTitleBasket.text = dish.titleDish
             tvDishDescrBasket.text = dish.descriptionDish
         }
+    }
+
+    companion object {
+        const val TYPE_VIEW = 1
+        const val MAX_VIEW_POOL = 15
     }
 }

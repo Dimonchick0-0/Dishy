@@ -21,14 +21,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/dishImage"
+            android:id="@+id/differentDishImage"
             android:layout_width="match_parent"
             android:layout_height="123dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/chickensoup" />
 
         <TextView
-            android:id="@+id/tvDishTitle"
+            android:id="@+id/tvDifferentDishTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -38,14 +38,14 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tvDishDescr"
+            android:id="@+id/tvDifferentDishDescr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btnOrder"
+            android:id="@+id/btnOrderDifferentDish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/addToBasket" />

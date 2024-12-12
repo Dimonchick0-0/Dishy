@@ -6,32 +6,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dishy.MyApplication
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentChooseDishBinding
-import com.example.dishy.di.app.DaggerApplicationComponent
 import com.example.dishy.presentation.recycler.dishAdapter.DishAdapter
+import com.example.dishy.presentation.viewmodel.ViewModelFactory
 import com.example.dishy.presentation.viewmodel.firstscreen.ChooseDishViewModel
-import com.example.dishy.presentation.viewmodel.firstscreen.lazyViewModel
+import javax.inject.Inject
 
 class ChooseDishFragment : Fragment() {
-
-    private val component by lazy {
-        DaggerApplicationComponent.builder()
-            .application(requireActivity().application)
-            .build()
-    }
-
-    private val vm: ChooseDishViewModel by lazyViewModel { stateHandle ->
-        component.getChooseDishViewModel().create(stateHandle)
-    }
-
     private var _binding: FragmentChooseDishBinding? = null
     private val binding: FragmentChooseDishBinding
         get() = _binding ?: throw RuntimeException("FragmentChooseDishBinding == null")
 
     private lateinit var dishAdapter: DishAdapter
+    private lateinit var vm: ChooseDishViewModel
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (requireActivity().application as MyApplication).component
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,16 +45,16 @@ class ChooseDishFragment : Fragment() {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        component.inject(this)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm = ViewModelProvider(this, viewModelFactory)[ChooseDishViewModel::class.java]
         initAdapter(view.context)
         addDishToBasket()
         setupBtnNav()
+        val fragment = DifferentDishesFragment()
+        childFragmentManager.beginTransaction().apply {
+            replace(R.id.different_fragment_container, fragment).commitNow()
+        }
     }
 
     private fun setupBtnNav() = with(binding) {
@@ -87,7 +91,7 @@ class ChooseDishFragment : Fragment() {
 
     private fun addDishToBasket() {
         dishAdapter.onItemClickListener = {
-            vm.addDish(it)
+            vm.addDishToBasket(it)
         }
     }
 
