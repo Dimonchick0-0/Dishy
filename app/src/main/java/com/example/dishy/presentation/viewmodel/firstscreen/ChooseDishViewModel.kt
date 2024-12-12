@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dishy.data.DishRepositoryImpl
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
 import com.example.dishy.domain.repository.DishRepository
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class ChooseDishViewModel @Inject constructor(
     private val getListDishUseCase: GetListDishUseCase,
     private val getDifferentDishesUseCase: GetDifferentDishesUseCase,
-    private val repository: DishRepository
+    private val repository: DishRepositoryImpl
 ) : ViewModel() {
 
     val dishList = getListDishUseCase()
@@ -33,7 +34,7 @@ class ChooseDishViewModel @Inject constructor(
                 descriptionDish = dish.descriptionDish,
                 basketID = true
             )
-            repository.addDishToBasket(newDish)
+            repository.add(newDish)
         }
     }
 
@@ -46,7 +47,7 @@ class ChooseDishViewModel @Inject constructor(
                 descriptionDish = differentDishes.descriptionDish,
                 basketID = true
             )
-//            repository.addDishToBasket(newDish)
+            repository.add(newDish)
         }
     }
 }
