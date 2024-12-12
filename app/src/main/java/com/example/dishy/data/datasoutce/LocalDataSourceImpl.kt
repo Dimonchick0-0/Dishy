@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.dishy.data.db.AppDatabase
 import com.example.dishy.data.mapper.DishListMapper
+import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
 import javax.inject.Inject
 
@@ -16,6 +17,10 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun addDishToBasket(dish: Dish) {
         dishBasketDao.insertDishBasket(mapper.mapEntityToDbModel(dish))
+    }
+
+    override suspend fun addDishToBasket(differentDishes: DifferentDishes) {
+        dishBasketDao.insertDishBasket(mapper.mapEntityToDbModel(differentDishes))
     }
 
     override fun loadAllDishBasket(): LiveData<List<Dish>> {

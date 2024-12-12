@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class DishRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSourceImpl
-) : DishRepository {
+) : DishRepository, DishTest {
     private val dishListLdDish = MutableLiveData<List<Dish>>()
     private val dishListLdDifferentDishes = MutableLiveData<List<DifferentDishes>>()
     private val initDishList = DishyList()
@@ -23,16 +23,20 @@ class DishRepositoryImpl @Inject constructor(
         setList(initDishList.setListDish(), initDifferentDishes.setDifferentDishesList())
     }
 
+    override suspend fun add(dish: Dish) {
+        localDataSource.addDishToBasket(dish)
+    }
+
+    override suspend fun add(differentDishes: DifferentDishes) {
+        localDataSource.addDishToBasket(differentDishes)
+    }
+
     override fun getDifferentDish(): LiveData<List<DifferentDishes>> {
         return dishListLdDifferentDishes
     }
 
     override fun getDish(): LiveData<List<Dish>> {
         return dishListLdDish
-    }
-
-    override suspend fun addDishToBasket(dish: Dish) {
-        localDataSource.addDishToBasket(dish)
     }
 
     override fun loadAllDishBasket(): LiveData<List<Dish>> {

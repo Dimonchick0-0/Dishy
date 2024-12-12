@@ -72,7 +72,7 @@ class DifferentDishesFragment : Fragment() {
 
     private fun addDifferentDishToBasket() {
         differentDishAdapter.onAddItemClickListener = {
-            TODO() // Сделать добавку в корзину
+            vm.addDifferentDishToBasket(it)
         }
     }
 
