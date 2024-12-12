@@ -1,29 +1,28 @@
 package com.example.dishy.di.app
 
 import android.app.Application
-import androidx.fragment.app.Fragment
-import com.example.dishy.di.DataModule
-import com.example.dishy.di.DomainModule
-import com.example.dishy.presentation.viewmodel.secondscreen.BasketDishFactory
-import com.example.dishy.presentation.viewmodel.firstscreen.ChooseDishViewModel
+import com.example.dishy.di.ApplicationScope
+import com.example.dishy.di.datamodule.DataModule
+import com.example.dishy.di.domainmodule.DomainModule
+import com.example.dishy.di.viewmodelmodule.ViewModelModule
+import com.example.dishy.presentation.fragment.BasketFragment
+import com.example.dishy.presentation.fragment.ChooseDishFragment
+import com.example.dishy.presentation.fragment.DifferentDishesFragment
 import dagger.BindsInstance
 import dagger.Component
 
-@Component(modules = [DomainModule::class, DataModule::class])
+@ApplicationScope
+@Component(modules = [DomainModule::class, DataModule::class, ViewModelModule::class])
 interface ApplicationComponent {
 
-    fun inject(fragment: Fragment)
+    fun inject(fragment: ChooseDishFragment)
+    fun inject(fragment: BasketFragment)
+    fun inject(fragment: DifferentDishesFragment)
 
-    fun getChooseDishViewModel(): ChooseDishViewModel.Factory
-
-    fun getBasketDishViewModel(): BasketDishFactory
-
-    @Component.Builder
-    interface ApplicationComponentBuilder {
-
-        @BindsInstance
-        fun application(application: Application): ApplicationComponentBuilder
-
-        fun build(): ApplicationComponent
+    @Component.Factory
+    interface ApplicationComponentFactory {
+        fun create(
+            @BindsInstance application: Application
+        ): ApplicationComponent
     }
 }

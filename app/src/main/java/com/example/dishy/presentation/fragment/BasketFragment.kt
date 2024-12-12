@@ -2,39 +2,39 @@ package com.example.dishy.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dishy.MyApplication
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentBasketBinding
-import com.example.dishy.di.app.DaggerApplicationComponent
-import com.example.dishy.domain.entity.Dish
 import com.example.dishy.presentation.recycler.basketadapter.DishBasketAdapter
+import com.example.dishy.presentation.viewmodel.ViewModelFactory
 import com.example.dishy.presentation.viewmodel.secondscreen.BasketDishViewModel
-import com.example.dishy.presentation.viewmodel.secondscreen.lazyViewModel
+import javax.inject.Inject
 
 class BasketFragment : Fragment() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private var _binding: FragmentBasketBinding? = null
     private val binding: FragmentBasketBinding
         get() = _binding ?: throw RuntimeException("FragmentBasketBinding = null")
 
     private val component by lazy {
-        DaggerApplicationComponent.builder()
-            .application(requireActivity().application)
-            .build()
-    }
-
-    private val vm: BasketDishViewModel by lazyViewModel { stateHandle ->
-        component.getBasketDishViewModel().create(stateHandle)
+        (requireActivity().application as MyApplication).component
     }
 
     private lateinit var dishBasketAdapter: DishBasketAdapter
+    private lateinit var vm: BasketDishViewModel
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,15 +44,12 @@ class BasketFragment : Fragment() {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        component.inject(this)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm = ViewModelProvider(this, viewModelFactory)[BasketDishViewModel::class.java]
         initAdapter(view.context)
         setupBtnNav()
+        deleteDishItem()
     }
 
     private fun initAdapter(context: Context) {
@@ -64,6 +61,10 @@ class BasketFragment : Fragment() {
             )
             dishBasketAdapter = DishBasketAdapter()
             adapter = dishBasketAdapter
+            recycledViewPool.setMaxRecycledViews(
+                DishBasketAdapter.TYPE_VIEW,
+                DishBasketAdapter.MAX_VIEW_POOL
+            )
             setupBasketList()
         }
     }
@@ -75,6 +76,12 @@ class BasketFragment : Fragment() {
                 R.id.dishHome -> launchChooseDishFrag()
             }
             true
+        }
+    }
+
+    private fun deleteDishItem() {
+        dishBasketAdapter.onItemDeleteClickListener = {
+            vm.deleteItem(it)
         }
     }
 

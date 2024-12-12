@@ -1,4 +1,4 @@
-package com.example.dishy.di
+package com.example.dishy.di.domainmodule
 
 import com.example.dishy.data.DishRepositoryImpl
 import com.example.dishy.domain.repository.DishRepository

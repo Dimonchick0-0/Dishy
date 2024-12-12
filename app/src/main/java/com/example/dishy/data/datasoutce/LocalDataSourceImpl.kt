@@ -21,4 +21,12 @@ class LocalDataSourceImpl @Inject constructor(
     override fun loadAllDishBasket(): LiveData<List<Dish>> {
         return dishBasketDao.loadAllDishBasket()
     }
+
+    override suspend fun deleteDishItem(dish: Dish) {
+        dishBasketDao.deleteDishItem(mapper.mapEntityToDbModel(dish))
+    }
+
+    override suspend fun updateItemDish(dish: Dish) {
+        dishBasketDao.updateItemDish(mapper.mapEntityToDbModel(dish))
+    }
 }
