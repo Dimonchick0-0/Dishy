@@ -24,6 +24,7 @@ class DifferentDishAdapter: ListAdapter<DifferentDishes,
                 .into(differentDishImage)
             tvDifferentDishTitle.text = differentDishes.titleDish
             tvDifferentDishDescr.text = differentDishes.descriptionDish
+            differentDishPrice.text = String.format("%s", differentDishes.priceDish)
         }
     }
 

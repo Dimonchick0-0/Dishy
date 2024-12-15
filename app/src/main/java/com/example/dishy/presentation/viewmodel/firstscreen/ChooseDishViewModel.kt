@@ -32,6 +32,7 @@ class ChooseDishViewModel @Inject constructor(
                 image = dish.image,
                 titleDish = dish.titleDish,
                 descriptionDish = dish.descriptionDish,
+                priceDish = dish.priceDish,
                 basketID = true
             )
             repository.add(newDish)
@@ -45,6 +46,7 @@ class ChooseDishViewModel @Inject constructor(
                 image = differentDishes.image,
                 titleDish = differentDishes.titleDish,
                 descriptionDish = differentDishes.descriptionDish,
+                priceDish = differentDishes.priceDish,
                 basketID = true
             )
             repository.add(newDish)

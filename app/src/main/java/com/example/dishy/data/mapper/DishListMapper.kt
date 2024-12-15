@@ -10,13 +10,15 @@ class DishListMapper @Inject constructor() {
         id = dishBasketDatabase.id,
         image = dishBasketDatabase.image,
         titleDish = dishBasketDatabase.titleDish,
-        descriptionDish = dishBasketDatabase.descriptionDish
+        descriptionDish = dishBasketDatabase.descriptionDish,
+        priceDish = dishBasketDatabase.priceDish
     )
     fun mapEntityToDbModel(dish: Dish) = DishBasketDatabase(
         id = dish.id,
         image = dish.image,
         titleDish = dish.titleDish,
         descriptionDish = dish.descriptionDish,
+        priceDish = dish.priceDish,
         basketID = dish.basketID
     )
 
@@ -25,6 +27,7 @@ class DishListMapper @Inject constructor() {
         image = differentDishes.image,
         titleDish = differentDishes.titleDish,
         descriptionDish = differentDishes.descriptionDish,
+        priceDish = differentDishes.priceDish,
         basketID = differentDishes.basketID
     )
 
