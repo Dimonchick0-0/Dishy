@@ -11,5 +11,6 @@ data class DishBasketDatabase (
     val image: Int,
     val titleDish: String,
     val descriptionDish: String,
+    val priceDish: Int,
     val basketID: Boolean
 )

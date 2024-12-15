@@ -40,6 +40,7 @@ class DishBasketAdapter: ListAdapter<Dish, DishBasketAdapter.DishBasketViewHolde
                 .into(dishImageBasket)
             tvDishTitleBasket.text = dish.titleDish
             tvDishDescrBasket.text = dish.descriptionDish
+            basketDishPrice.text = String.format("%s", dish.priceDish)
         }
     }
 

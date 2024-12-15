@@ -39,6 +39,7 @@ class DishAdapter: ListAdapter<Dish, DishAdapter.DishViewHolder>(DishItemCallbac
                 .into(dishImage)
             tvDishTitle.text = dish.titleDish
             tvDishDescr.text = dish.descriptionDish
+            dishPrice.text = String.format("%s", dish.priceDish)
         }
     }
 }

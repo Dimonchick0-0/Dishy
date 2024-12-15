@@ -9,12 +9,14 @@ class DifferentDishList {
             DifferentDishes(
                 image = R.drawable.salat,
                 titleDish = "Итальянский салат с копчённой курицей",
-                descriptionDish = "Попробуйте Италию на вкус..."
+                descriptionDish = "Попробуйте Италию на вкус...",
+                priceDish = 1200
             ),
             DifferentDishes(
                 image = R.drawable.chickensoup,
                 titleDish = "Куринный суп номер 2",
-                descriptionDish = "Всеми горячо любимый куринный супчик!"
+                descriptionDish = "Всеми горячо любимый куринный супчик!",
+                priceDish = 500
             )
         )
     }

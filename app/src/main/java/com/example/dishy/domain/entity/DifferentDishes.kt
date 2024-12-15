@@ -5,6 +5,7 @@ data class DifferentDishes(
     val image: Int = UNDEFINED_IMAGE,
     val titleDish: String = UNDEFINED_TITLE,
     val descriptionDish: String = UNDEFINED_DESCR,
+    val priceDish: Int = UNDEFINED_PRICE,
     var basketID: Boolean = false
 ) {
     companion object {
@@ -12,5 +13,6 @@ data class DifferentDishes(
         private const val UNDEFINED_TITLE = ""
         private const val UNDEFINED_DESCR = ""
         private const val UNDEFINED_IMAGE = 0
+        private const val UNDEFINED_PRICE = 0
     }
 }

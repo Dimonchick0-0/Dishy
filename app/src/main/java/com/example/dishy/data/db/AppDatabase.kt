@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.dishy.di.ApplicationScope
 
 @ApplicationScope
-@Database(entities = [DishBasketDatabase::class], version = 20, exportSchema = false)
+@Database(entities = [DishBasketDatabase::class], version = 21, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun dishBasket(): DishBasketDao
 
