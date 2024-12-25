@@ -3,6 +3,7 @@ package com.example.dishy.domain.repository
 import androidx.lifecycle.LiveData
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
+import com.example.dishy.domain.entity.TypeDish
 
 interface DishRepository {
     fun getDish(): LiveData<List<Dish>>

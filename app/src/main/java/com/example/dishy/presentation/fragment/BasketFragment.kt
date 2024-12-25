@@ -78,6 +78,7 @@ class BasketFragment : Fragment() {
         btnNavMenu.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.dishHome -> launchChooseDishFrag()
+                R.id.dishSearch -> launchFragmentTypeDish()
             }
             true
         }
@@ -91,6 +92,10 @@ class BasketFragment : Fragment() {
 
     private fun launchChooseDishFrag() {
         findNavController().navigate(R.id.action_basketFragment_to_chooseDishFragment)
+    }
+
+    private fun launchFragmentTypeDish() {
+        findNavController().navigate(R.id.action_basketFragment_to_typeDishFragment)
     }
 
     private fun observeViewModel() {

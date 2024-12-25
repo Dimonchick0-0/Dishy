@@ -7,8 +7,14 @@
         android:orderInCategory="1"
         />
     <item
+        android:id="@+id/dishSearch"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_dish"
+        android:orderInCategory="2"
+        />
+    <item
         android:id="@+id/dishBasket"
         android:icon="@drawable/is_basket"
         android:title="@string/basket"
-        android:orderInCategory="2"/>
+        android:orderInCategory="3"/>
 </menu>
