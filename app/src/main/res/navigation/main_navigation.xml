@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_chooseDishFragment_to_basketFragment"
             app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_chooseDishFragment_to_typeDishFragment"
+            app:destination="@id/typeDishFragment" />
     </fragment>
     <fragment
         android:id="@+id/basketFragment"
@@ -29,5 +32,20 @@
         <action
             android:id="@+id/action_basketFragment_to_chooseDishFragment"
             app:destination="@id/chooseDishFragment" />
+        <action
+            android:id="@+id/action_basketFragment_to_typeDishFragment"
+            app:destination="@id/typeDishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/typeDishFragment"
+        android:name="com.example.dishy.presentation.fragment.TypeDishFragment"
+        android:label="fragment_type_dish"
+        tools:layout="@layout/fragment_type_dish" >
+        <action
+            android:id="@+id/action_typeDishFragment_to_chooseDishFragment"
+            app:destination="@id/chooseDishFragment" />
+        <action
+            android:id="@+id/action_typeDishFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
     </fragment>
 </navigation>

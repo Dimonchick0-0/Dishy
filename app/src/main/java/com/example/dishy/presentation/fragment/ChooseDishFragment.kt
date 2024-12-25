@@ -62,6 +62,7 @@ class ChooseDishFragment : Fragment() {
         btnNavMenu.setOnItemSelectedListener {
                 when(it.itemId) {
                     R.id.dishBasket -> launchFragmentBasket()
+                    R.id.dishSearch -> launchFragmentTypeDish()
                 }
             true
         }
@@ -69,6 +70,10 @@ class ChooseDishFragment : Fragment() {
 
     private fun launchFragmentBasket() {
         findNavController().navigate(R.id.action_chooseDishFragment_to_basketFragment)
+    }
+
+    private fun launchFragmentTypeDish() {
+        findNavController().navigate(R.id.action_chooseDishFragment_to_typeDishFragment)
     }
 
     private fun setupDishList() {
