@@ -51,6 +51,10 @@ class DishRepositoryImpl @Inject constructor(
         localDataSource.updateItemDish(dish)
     }
 
+    fun getAllPrice(priceDish: Int): LiveData<List<Dish>> {
+        return localDataSource.getPrice(priceDish)
+    }
+
     private fun setList(list: MutableList<Dish>, listDifferent: MutableList<DifferentDishes>) {
         dishList = list
         differentDishList = listDifferent

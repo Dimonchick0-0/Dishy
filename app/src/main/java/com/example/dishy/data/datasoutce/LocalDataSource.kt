@@ -11,6 +11,8 @@ interface LocalDataSource {
 
    fun loadAllDishBasket(): LiveData<List<Dish>>
 
+   fun getPrice(price: Int): LiveData<List<Dish>>
+
    suspend fun deleteDishItem(dish: Dish)
 
    suspend fun updateItemDish(dish: Dish)

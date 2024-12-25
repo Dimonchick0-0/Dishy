@@ -17,6 +17,9 @@ interface DishBasketDao {
     @Query("SELECT * FROM basket ORDER BY id ASC")
     fun loadAllDishBasket(): LiveData<List<Dish>>
 
+    @Query("SELECT * FROM basket WHERE priceDish = :price")
+    fun getPrice(price: Int): LiveData<List<Dish>>
+
     @Delete
     suspend fun deleteDishItem(dishBasketDatabase: DishBasketDatabase)
 

@@ -6,13 +6,14 @@ import com.example.dishy.domain.entity.Dish
 import javax.inject.Inject
 
 class DishListMapper @Inject constructor() {
-    private fun mapDbModelToEntity(dishBasketDatabase: DishBasketDatabase) = Dish(
+    fun mapDbModelToEntity(dishBasketDatabase: DishBasketDatabase) = Dish(
         id = dishBasketDatabase.id,
         image = dishBasketDatabase.image,
         titleDish = dishBasketDatabase.titleDish,
         descriptionDish = dishBasketDatabase.descriptionDish,
         priceDish = dishBasketDatabase.priceDish
     )
+
     fun mapEntityToDbModel(dish: Dish) = DishBasketDatabase(
         id = dish.id,
         image = dish.image,
