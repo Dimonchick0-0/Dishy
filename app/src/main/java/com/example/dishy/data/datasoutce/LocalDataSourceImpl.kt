@@ -1,9 +1,7 @@
 package com.example.dishy.data.datasoutce
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import com.example.dishy.data.db.AppDatabase
+import androidx.lifecycle.switchMap
 import com.example.dishy.data.db.DishBasketDao
 import com.example.dishy.data.mapper.DishListMapper
 import com.example.dishy.domain.entity.DifferentDishes
@@ -14,6 +12,10 @@ class LocalDataSourceImpl @Inject constructor(
     private val mapper: DishListMapper,
     private val dishBasketDao: DishBasketDao
 ) : LocalDataSource {
+
+    override fun getPrice(price: Int): LiveData<List<Dish>> {
+        return dishBasketDao.getPrice(price)
+    }
 
     override suspend fun addDishToBasket(dish: Dish) {
         dishBasketDao.insertDishBasket(mapper.mapEntityToDbModel(dish))

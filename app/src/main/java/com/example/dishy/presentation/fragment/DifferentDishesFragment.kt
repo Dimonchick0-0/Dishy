@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.dishy.MyApplication
+import com.example.dishy.MyDishApplication
 import com.example.dishy.databinding.FragmentDifferentDishesBinding
 import com.example.dishy.presentation.recycler.differentAdapter.DifferentDishAdapter
 import com.example.dishy.presentation.viewmodel.ViewModelFactory
@@ -26,7 +25,7 @@ class DifferentDishesFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentDifferentDishesBinding = null")
 
     private val component by lazy {
-        (requireActivity().application as MyApplication).component
+        (requireActivity().application as MyDishApplication).component
     }
 
     private lateinit var vm: ChooseDishViewModel

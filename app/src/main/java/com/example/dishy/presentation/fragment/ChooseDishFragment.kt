@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dishy.MyApplication
+import com.example.dishy.MyDishApplication
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentChooseDishBinding
 import com.example.dishy.presentation.recycler.dishAdapter.DishAdapter
@@ -29,7 +29,7 @@ class ChooseDishFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val component by lazy {
-        (requireActivity().application as MyApplication).component
+        (requireActivity().application as MyDishApplication).component
     }
 
     override fun onAttach(context: Context) {
@@ -91,6 +91,7 @@ class ChooseDishFragment : Fragment() {
 
     private fun addDishToBasket() {
         dishAdapter.onItemClickListener = {
+
             vm.addDishToBasket(it)
         }
     }
