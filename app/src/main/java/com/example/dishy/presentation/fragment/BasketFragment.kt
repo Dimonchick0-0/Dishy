@@ -6,8 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dishy.MyDishApplication
@@ -54,6 +58,8 @@ class BasketFragment : Fragment() {
         setupBtnNav()
         deleteDishItem()
         observeViewModel()
+        clearAllBackStackIsFromFragment()
+        Log.d("BasketFragmentBackStack", "onViewCreated")
     }
 
     private fun initAdapter(context: Context) {
@@ -92,10 +98,30 @@ class BasketFragment : Fragment() {
 
     private fun launchChooseDishFrag() {
         findNavController().navigate(R.id.action_basketFragment_to_chooseDishFragment)
+        Log.d("BasketFragmentClear", "clear")
     }
 
     private fun launchFragmentTypeDish() {
         findNavController().navigate(R.id.action_basketFragment_to_typeDishFragment)
+        Log.d("BasketFragmentClear", "clear")
+    }
+
+    private fun clearAllBackStackIsFromFragment() {
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity()
+                        .supportFragmentManager
+                        .popBackStack(null,
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                    if (isEnabled) {
+                        isEnabled = false
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            })
     }
 
     private fun observeViewModel() {
