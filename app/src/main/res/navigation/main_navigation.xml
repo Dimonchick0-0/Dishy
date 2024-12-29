@@ -43,7 +43,9 @@
         tools:layout="@layout/fragment_type_dish" >
         <action
             android:id="@+id/action_typeDishFragment_to_chooseDishFragment"
-            app:destination="@id/chooseDishFragment" />
+            app:destination="@id/chooseDishFragment"
+            app:popUpTo="@id/chooseDishFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_typeDishFragment_to_basketFragment"
             app:destination="@id/basketFragment" />

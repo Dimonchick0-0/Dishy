@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -54,12 +57,31 @@ class TypeDishFragment : Fragment() {
         initAdapter(view.context)
         setTypeDishAdapterToList()
         setupBtnNav()
+        clearAllBackStackIsFromFragment()
+    }
+
+    private fun clearAllBackStackIsFromFragment() {
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity()
+                        .supportFragmentManager
+                        .popBackStack(null,
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                    if (isEnabled) {
+                        isEnabled = false
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            })
     }
 
     private fun setupBtnNav() = with(binding) {
         btnNavMenu.selectedItemId = R.id.dishSearch
         btnNavMenu.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.dishHome -> launchFragmentChoose()
                 R.id.dishBasket -> launchFragmentBasket()
             }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentInvitationBinding
@@ -36,5 +37,9 @@ class InvitationFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        const val HOME_FRAGMENT = "homeFragment"
     }
 }
