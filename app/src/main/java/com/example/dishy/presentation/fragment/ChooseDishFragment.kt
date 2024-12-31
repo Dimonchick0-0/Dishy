@@ -2,12 +2,11 @@ package com.example.dishy.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,7 +56,25 @@ class ChooseDishFragment : Fragment() {
         childFragmentManager.beginTransaction().apply {
             replace(R.id.different_fragment_container, fragment).commitNow()
         }
+        clearBackstack()
     }
+
+    private fun clearBackstack() {
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
+                override fun handleOnBackPressed() {
+
+                    requireActivity().supportFragmentManager.popBackStack()
+
+                    if (isEnabled) {
+                        isEnabled = false
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            })
+    }
+
 
     private fun setupBtnNav() = with(binding) {
         btnNavMenu.selectedItemId = R.id.dishHome

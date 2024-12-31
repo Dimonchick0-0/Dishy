@@ -1,8 +1,8 @@
 package com.example.dishy.di.datamodule
 
 import android.app.Application
+import com.example.dishy.data.DishAddingToBasket
 import com.example.dishy.data.DishRepositoryImpl
-import com.example.dishy.data.DishTest
 import com.example.dishy.data.datasoutce.LocalDataSource
 import com.example.dishy.data.datasoutce.LocalDataSourceImpl
 import com.example.dishy.data.db.AppDatabase
@@ -19,7 +19,7 @@ interface DataModule {
     fun bindDishLocalDataSource(impl: LocalDataSourceImpl): LocalDataSource
 
     @Binds
-    fun bindDishTest(impl: DishRepositoryImpl): DishTest
+    fun bindDishTest(impl: DishRepositoryImpl): DishAddingToBasket
 
     companion object {
         @ApplicationScope
