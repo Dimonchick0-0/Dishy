@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dishy.R
 import com.example.dishy.databinding.DifferentDishItemBinding
-import com.example.dishy.databinding.DishBasketItemBinding
 import com.example.dishy.domain.entity.DifferentDishes
 
 class DifferentDishAdapter: ListAdapter<DifferentDishes,

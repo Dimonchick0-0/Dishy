@@ -5,14 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.example.dishy.data.datasoutce.LocalDataSourceImpl
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
-import com.example.dishy.domain.entity.TypeDish
 import com.example.dishy.domain.repository.DishRepository
 import com.example.dishy.presentation.viewmodel.firstscreen.DifferentDishList
 import javax.inject.Inject
 
 class DishRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSourceImpl
-) : DishRepository, DishTest {
+) : DishRepository, DishAddingToBasket {
     private val dishListLdDish = MutableLiveData<List<Dish>>()
     private val dishListLdDifferentDishes = MutableLiveData<List<DifferentDishes>>()
     private val initDishList = DishyList()

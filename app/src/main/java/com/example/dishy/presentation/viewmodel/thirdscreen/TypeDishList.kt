@@ -13,14 +13,24 @@ class TypeDishList @Inject constructor() {
                 image = R.drawable.hotdishes
             ),
             TypeDish(
-                id = 0,
-                title = "Горячие блюда",
-                image = R.drawable.hotdishes
+                id = 1,
+                title = "Холодные блюда",
+                image = R.drawable.colddishes
             ),
             TypeDish(
-                id = 0,
-                title = "Горячие блюда",
-                image = R.drawable.hotdishes
+                id = 2,
+                title = "Горячие напитки",
+                image = R.drawable.hotdrinks
+            ),
+            TypeDish(
+                id = 3,
+                title = "Холодные напитки",
+                image = R.drawable.coldnapitky
+            ),
+            TypeDish(
+                id = 4,
+                title = "Салаты",
+                image = R.drawable.salat
             )
         )
     }

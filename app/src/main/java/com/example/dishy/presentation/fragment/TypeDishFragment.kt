@@ -2,13 +2,11 @@ package com.example.dishy.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.dishy.MyDishApplication
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentTypeDishBinding
-import com.example.dishy.domain.entity.TypeDish
 import com.example.dishy.presentation.recycler.typedishadapter.TypeDishAdapter
 import com.example.dishy.presentation.viewmodel.ViewModelFactory
 import com.example.dishy.presentation.viewmodel.thirdscreen.TypeDishViewModel
@@ -67,8 +64,7 @@ class TypeDishFragment : Fragment() {
                 override fun handleOnBackPressed() {
                     requireActivity()
                         .supportFragmentManager
-                        .popBackStack(null,
-                            FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        .popBackStack()
 
                     if (isEnabled) {
                         isEnabled = false

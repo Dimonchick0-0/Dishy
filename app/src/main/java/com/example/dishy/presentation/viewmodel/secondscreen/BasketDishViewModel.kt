@@ -1,7 +1,6 @@
 package com.example.dishy.presentation.viewmodel.secondscreen
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dishy.data.DishRepositoryImpl
