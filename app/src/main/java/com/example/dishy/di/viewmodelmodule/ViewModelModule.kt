@@ -2,6 +2,7 @@ package com.example.dishy.di.viewmodelmodule
 
 import androidx.lifecycle.ViewModel
 import com.example.dishy.presentation.viewmodel.firstscreen.ChooseDishViewModel
+import com.example.dishy.presentation.viewmodel.fourscreen.CommonForDishViewModel
 import com.example.dishy.presentation.viewmodel.secondscreen.BasketDishViewModel
 import com.example.dishy.presentation.viewmodel.thirdscreen.TypeDishViewModel
 import dagger.Binds
@@ -24,4 +25,9 @@ interface ViewModelModule {
     @ViewModelKey(TypeDishViewModel::class)
     @Binds
     fun bindTypeDishViewModel(impl: TypeDishViewModel): ViewModel
+
+    @IntoMap
+    @ViewModelKey(CommonForDishViewModel::class)
+    @Binds
+    fun bindCommonForDishViewModel(impl: CommonForDishViewModel): ViewModel
 }

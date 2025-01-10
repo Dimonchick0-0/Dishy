@@ -8,18 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dishy.R
 import com.example.dishy.databinding.TypeDishItemBinding
+import com.example.dishy.domain.entity.Dishy
 import com.example.dishy.domain.entity.TypeDish
 
-class TypeDishAdapter: ListAdapter<TypeDish,
+class TypeDishAdapter : ListAdapter<Dishy,
         TypeDishAdapter.TypeDishViewHolder>(TypeDishCallbackDiffUtil()) {
 
-    class TypeDishViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    var onItemClickListener: ((Dishy) -> Unit)? = null
+
+    class TypeDishViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = TypeDishItemBinding.bind(view)
-        fun setData(typeDish: TypeDish) = with(binding) {
+        fun setData(dishy: Dishy) = with(binding) {
             Glide.with(itemView)
-                .load(typeDish.image)
+                .load(dishy.image)
                 .into(typeDishImage)
-            tvTypeDishTitle.text = typeDish.title
+            tvTypeDishTitle.text = dishy.title
         }
     }
 
@@ -35,5 +38,8 @@ class TypeDishAdapter: ListAdapter<TypeDish,
     override fun onBindViewHolder(holder: TypeDishViewHolder, position: Int) {
         val item = getItem(position)
         holder.setData(item)
+        holder.binding.cardTypeDishItem.setOnClickListener {
+            onItemClickListener?.invoke(item)
+        }
     }
 }

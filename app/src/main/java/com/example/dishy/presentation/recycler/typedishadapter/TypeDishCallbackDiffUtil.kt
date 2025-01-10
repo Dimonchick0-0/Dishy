@@ -1,14 +1,17 @@
 package com.example.dishy.presentation.recycler.typedishadapter
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
+import com.example.dishy.domain.entity.Dishy
 import com.example.dishy.domain.entity.TypeDish
 
-class TypeDishCallbackDiffUtil: DiffUtil.ItemCallback<TypeDish>() {
-    override fun areItemsTheSame(oldItem: TypeDish, newItem: TypeDish): Boolean {
+class TypeDishCallbackDiffUtil: DiffUtil.ItemCallback<Dishy>() {
+    override fun areItemsTheSame(oldItem: Dishy, newItem: Dishy): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: TypeDish, newItem: TypeDish): Boolean {
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: Dishy, newItem: Dishy): Boolean {
         return oldItem == newItem
     }
 }

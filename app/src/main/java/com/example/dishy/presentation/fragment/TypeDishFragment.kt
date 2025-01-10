@@ -2,18 +2,21 @@ package com.example.dishy.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.dishy.MyDishApplication
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentTypeDishBinding
+import com.example.dishy.domain.emun.DishyType
+import com.example.dishy.domain.entity.Dish
+import com.example.dishy.domain.entity.Dishy
 import com.example.dishy.presentation.recycler.typedishadapter.TypeDishAdapter
 import com.example.dishy.presentation.viewmodel.ViewModelFactory
 import com.example.dishy.presentation.viewmodel.thirdscreen.TypeDishViewModel
@@ -55,6 +58,18 @@ class TypeDishFragment : Fragment() {
         setTypeDishAdapterToList()
         setupBtnNav()
         clearAllBackStackIsFromFragment()
+        switchingToASpecificTypeOfDish()
+    }
+
+    private fun switchingToASpecificTypeOfDish() {
+        typeDishAdapter.onItemClickListener = {
+            findNavController().apply {
+                val action = TypeDishFragmentDirections
+                    .actionTypeDishFragmentToCommonFragmentForDishes(it.dishyType)
+                navigate(action)
+                Log.d("TYPETEST", it.dishyType.toString())
+            }
+        }
     }
 
     private fun clearAllBackStackIsFromFragment() {
@@ -102,7 +117,7 @@ class TypeDishFragment : Fragment() {
     }
 
     private fun setTypeDishAdapterToList() {
-        vm.typeDishListLD.observe(viewLifecycleOwner) {
+        vm.dishyListLD.observe(viewLifecycleOwner) {
             typeDishAdapter.submitList(it)
         }
     }
@@ -112,4 +127,18 @@ class TypeDishFragment : Fragment() {
         _binding = null
     }
 
+    companion object {
+        private const val TYPE_DISH = "type_dish"
+        private const val MODE_SCREEN = "mode_screen"
+        private const val TYPE_DISH_ID = "type_dish_id"
+
+        fun newInstance(itemId: Int): TypeDishFragment {
+            return TypeDishFragment().apply {
+                arguments = Bundle().apply {
+                    putString(MODE_SCREEN, TYPE_DISH)
+                    putInt(TYPE_DISH_ID, itemId)
+                }
+            }
+        }
+    }
 }

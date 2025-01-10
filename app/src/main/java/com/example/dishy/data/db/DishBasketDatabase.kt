@@ -2,6 +2,7 @@ package com.example.dishy.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.dishy.domain.emun.DishyType
 
 @Entity(tableName = "basket")
 data class DishBasketDatabase (
@@ -11,5 +12,6 @@ data class DishBasketDatabase (
     val titleDish: String,
     val descriptionDish: String,
     val priceDish: Int,
-    val basketID: Boolean
+    val basketID: Boolean,
+    val dishyType: DishyType
 )
