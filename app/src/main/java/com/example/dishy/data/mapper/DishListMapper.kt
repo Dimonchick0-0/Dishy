@@ -3,6 +3,8 @@ package com.example.dishy.data.mapper
 import com.example.dishy.data.db.DishBasketDatabase
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
+import com.example.dishy.domain.entity.Dishy
+import com.example.dishy.domain.entity.TypeDish
 import javax.inject.Inject
 
 class DishListMapper @Inject constructor() {
@@ -11,7 +13,8 @@ class DishListMapper @Inject constructor() {
         image = dishBasketDatabase.image,
         titleDish = dishBasketDatabase.titleDish,
         descriptionDish = dishBasketDatabase.descriptionDish,
-        priceDish = dishBasketDatabase.priceDish
+        priceDish = dishBasketDatabase.priceDish,
+        dishyType = dishBasketDatabase.dishyType
     )
 
     fun mapEntityToDbModel(dish: Dish) = DishBasketDatabase(
@@ -20,7 +23,8 @@ class DishListMapper @Inject constructor() {
         titleDish = dish.titleDish,
         descriptionDish = dish.descriptionDish,
         priceDish = dish.priceDish,
-        basketID = dish.basketID
+        basketID = dish.basketID,
+        dishyType = dish.dishyType
     )
 
     fun mapEntityToDbModel(differentDishes: DifferentDishes) = DishBasketDatabase(
@@ -29,10 +33,7 @@ class DishListMapper @Inject constructor() {
         titleDish = differentDishes.titleDish,
         descriptionDish = differentDishes.descriptionDish,
         priceDish = differentDishes.priceDish,
-        basketID = differentDishes.basketID
+        basketID = differentDishes.basketID,
+        dishyType = differentDishes.dishyType
     )
-
-    fun mapListDbModelToListEntity(list: MutableList<DishBasketDatabase>) = list.map {
-        mapDbModelToEntity(it)
-    }
 }

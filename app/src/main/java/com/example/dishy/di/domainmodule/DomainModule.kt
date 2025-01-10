@@ -1,6 +1,6 @@
 package com.example.dishy.di.domainmodule
 
-import com.example.dishy.data.DishRepositoryImpl
+import com.example.dishy.data.repository.DishRepositoryImpl
 import com.example.dishy.domain.repository.DishRepository
 import dagger.Binds
 import dagger.Module

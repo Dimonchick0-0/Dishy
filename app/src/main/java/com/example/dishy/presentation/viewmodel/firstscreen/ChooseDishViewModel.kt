@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dishy.data.DishRepositoryImpl
+import com.example.dishy.data.repository.DishRepositoryImpl
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
 import com.example.dishy.domain.usecase.GetDifferentDishesUseCase

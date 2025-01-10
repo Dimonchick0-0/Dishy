@@ -49,5 +49,16 @@
         <action
             android:id="@+id/action_typeDishFragment_to_basketFragment"
             app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_typeDishFragment_to_commonFragmentForDishes"
+            app:destination="@id/commonFragmentForDishes" />
+    </fragment>
+    <fragment
+        android:id="@+id/commonFragmentForDishes"
+        android:name="com.example.dishy.presentation.fragment.CommonFragmentForDishes"
+        android:label="CommonFragmentForDishes" >
+        <argument
+            android:name="dishy_type_enum"
+            app:argType="com.example.dishy.domain.emun.DishyType" />
     </fragment>
 </navigation>

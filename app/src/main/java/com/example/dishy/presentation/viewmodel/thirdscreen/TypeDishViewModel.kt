@@ -3,27 +3,28 @@ package com.example.dishy.presentation.viewmodel.thirdscreen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dishy.domain.entity.TypeDish
+import com.example.dishy.data.listDish.DifferentListDishy
+import com.example.dishy.domain.entity.Dishy
 import javax.inject.Inject
 
 class TypeDishViewModel @Inject constructor(
-    private val initTypeDishList: TypeDishList
+    private val initDishyList: DifferentListDishy
 ) : ViewModel() {
-    private var typeDishList = mutableListOf<TypeDish>()
+    private var dishyList = listOf<Dishy>()
 
-    private var _typeDishListLD = MutableLiveData<List<TypeDish>>()
-    val typeDishListLD: LiveData<List<TypeDish>> = _typeDishListLD
+    private var _dishyListLD = MutableLiveData<List<Dishy>>()
+    val dishyListLD: LiveData<List<Dishy>> = _dishyListLD
 
     init {
-        setList(initTypeDishList.setTypeDishList())
+        setList(initDishyList.typeDishList())
     }
 
-    private fun setList(list: MutableList<TypeDish>) {
-        typeDishList = list
+    private fun setList(list: List<Dishy>) {
+        dishyList = list
         updateList()
     }
 
     private fun updateList() {
-        _typeDishListLD.value = typeDishList.toList()
+        _dishyListLD.value = dishyList.toList()
     }
 }

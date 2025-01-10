@@ -7,6 +7,7 @@ import com.example.dishy.di.domainmodule.DomainModule
 import com.example.dishy.di.viewmodelmodule.ViewModelModule
 import com.example.dishy.presentation.fragment.BasketFragment
 import com.example.dishy.presentation.fragment.ChooseDishFragment
+import com.example.dishy.presentation.fragment.CommonFragmentForDishes
 import com.example.dishy.presentation.fragment.DifferentDishesFragment
 import com.example.dishy.presentation.fragment.TypeDishFragment
 import dagger.BindsInstance
@@ -20,6 +21,7 @@ interface ApplicationComponent {
     fun inject(fragment: BasketFragment)
     fun inject(fragment: DifferentDishesFragment)
     fun inject(fragment: TypeDishFragment)
+    fun inject(fragmentForDishes: CommonFragmentForDishes)
 
     @Component.Factory
     interface ApplicationComponentFactory {
