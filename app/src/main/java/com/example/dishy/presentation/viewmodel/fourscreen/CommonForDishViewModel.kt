@@ -1,13 +1,11 @@
 package com.example.dishy.presentation.viewmodel.fourscreen
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dishy.data.repository.DishRepositoryImpl
 import com.example.dishy.domain.emun.DishyType
 import com.example.dishy.domain.entity.Dish
-import com.example.dishy.domain.entity.Dishy
 import javax.inject.Inject
 
 class CommonForDishViewModel @Inject constructor(

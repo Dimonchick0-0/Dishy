@@ -114,7 +114,7 @@ class ChooseDishFragment : Fragment() {
     }
 
     private fun addDishToBasket() {
-        dishAdapter.onItemClickListener = {
+        dishAdapter.addItemClickListener = {
 
             vm.addDishToBasket(it)
         }

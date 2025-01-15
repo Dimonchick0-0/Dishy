@@ -3,19 +3,9 @@ package com.example.dishy.data.mapper
 import com.example.dishy.data.db.DishBasketDatabase
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
-import com.example.dishy.domain.entity.Dishy
-import com.example.dishy.domain.entity.TypeDish
 import javax.inject.Inject
 
 class DishListMapper @Inject constructor() {
-    fun mapDbModelToEntity(dishBasketDatabase: DishBasketDatabase) = Dish(
-        id = dishBasketDatabase.id,
-        image = dishBasketDatabase.image,
-        titleDish = dishBasketDatabase.titleDish,
-        descriptionDish = dishBasketDatabase.descriptionDish,
-        priceDish = dishBasketDatabase.priceDish,
-        dishyType = dishBasketDatabase.dishyType
-    )
 
     fun mapEntityToDbModel(dish: Dish) = DishBasketDatabase(
         id = dish.id,
