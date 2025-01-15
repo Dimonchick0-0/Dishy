@@ -8,19 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dishy.MyDishApplication
 import com.example.dishy.R
 import com.example.dishy.databinding.FragmentBasketBinding
+import com.example.dishy.presentation.interfacefragments.ClearBackStack
 import com.example.dishy.presentation.recycler.basketadapter.DishBasketAdapter
 import com.example.dishy.presentation.viewmodel.ViewModelFactory
 import com.example.dishy.presentation.viewmodel.secondscreen.BasketDishViewModel
 import javax.inject.Inject
 
-class BasketFragment : Fragment() {
+class BasketFragment : Fragment(), ClearBackStack {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -56,7 +56,6 @@ class BasketFragment : Fragment() {
         deleteDishItem()
         observeViewModel()
         clearAllBackStackIsFromFragment()
-        Log.d("BasketFragmentBackStack", "onViewCreated")
     }
 
     private fun initAdapter(context: Context) {
@@ -79,7 +78,7 @@ class BasketFragment : Fragment() {
     private fun setupBtnNav() = with(binding) {
         btnNavMenu.selectedItemId = R.id.dishBasket
         btnNavMenu.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.dishHome -> launchChooseDishFrag()
                 R.id.dishSearch -> launchFragmentTypeDish()
             }
@@ -101,7 +100,7 @@ class BasketFragment : Fragment() {
         findNavController().navigate(R.id.action_basketFragment_to_typeDishFragment)
     }
 
-    private fun clearAllBackStackIsFromFragment() {
+    override fun clearAllBackStackIsFromFragment() {
         requireActivity()
             .onBackPressedDispatcher
             .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {

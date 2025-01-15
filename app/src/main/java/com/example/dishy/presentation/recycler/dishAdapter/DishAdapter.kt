@@ -12,7 +12,7 @@ import com.example.dishy.domain.entity.Dish
 
 class DishAdapter: ListAdapter<Dish, DishAdapter.DishViewHolder>(DishItemCallbackDiffUtil()) {
 
-    var onItemClickListener: ((Dish) -> Unit)? = null
+    var addItemClickListener: ((Dish) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -27,7 +27,7 @@ class DishAdapter: ListAdapter<Dish, DishAdapter.DishViewHolder>(DishItemCallbac
         val item = getItem(position)
         holder.setDishItem(item)
         holder.binding.btnOrder.setOnClickListener {
-            onItemClickListener?.invoke(item)
+            addItemClickListener?.invoke(item)
         }
     }
 

@@ -37,8 +37,4 @@ class InvitationFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-    companion object {
-        const val HOME_FRAGMENT = "homeFragment"
-    }
 }

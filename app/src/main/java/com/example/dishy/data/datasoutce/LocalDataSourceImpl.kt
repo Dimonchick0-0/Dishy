@@ -5,8 +5,6 @@ import com.example.dishy.data.db.DishBasketDao
 import com.example.dishy.data.mapper.DishListMapper
 import com.example.dishy.domain.entity.DifferentDishes
 import com.example.dishy.domain.entity.Dish
-import com.example.dishy.domain.entity.Dishy
-import com.example.dishy.domain.entity.TypeDish
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(

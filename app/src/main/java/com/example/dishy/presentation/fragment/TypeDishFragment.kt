@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.dishy.MyDishApplication
@@ -17,12 +18,13 @@ import com.example.dishy.databinding.FragmentTypeDishBinding
 import com.example.dishy.domain.emun.DishyType
 import com.example.dishy.domain.entity.Dish
 import com.example.dishy.domain.entity.Dishy
+import com.example.dishy.presentation.interfacefragments.ClearBackStack
 import com.example.dishy.presentation.recycler.typedishadapter.TypeDishAdapter
 import com.example.dishy.presentation.viewmodel.ViewModelFactory
 import com.example.dishy.presentation.viewmodel.thirdscreen.TypeDishViewModel
 import javax.inject.Inject
 
-class TypeDishFragment : Fragment() {
+class TypeDishFragment : Fragment(), ClearBackStack {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -61,18 +63,7 @@ class TypeDishFragment : Fragment() {
         switchingToASpecificTypeOfDish()
     }
 
-    private fun switchingToASpecificTypeOfDish() {
-        typeDishAdapter.onItemClickListener = {
-            findNavController().apply {
-                val action = TypeDishFragmentDirections
-                    .actionTypeDishFragmentToCommonFragmentForDishes(it.dishyType)
-                navigate(action)
-                Log.d("TYPETEST", it.dishyType.toString())
-            }
-        }
-    }
-
-    private fun clearAllBackStackIsFromFragment() {
+    override fun clearAllBackStackIsFromFragment() {
         requireActivity()
             .onBackPressedDispatcher
             .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -87,6 +78,16 @@ class TypeDishFragment : Fragment() {
                     }
                 }
             })
+    }
+
+    private fun switchingToASpecificTypeOfDish() {
+        typeDishAdapter.onItemClickListener = {
+            findNavController().apply {
+                val action = TypeDishFragmentDirections
+                    .actionTypeDishFragmentToCommonFragmentForDishes(it.dishyType)
+                navigate(action)
+            }
+        }
     }
 
     private fun setupBtnNav() = with(binding) {
