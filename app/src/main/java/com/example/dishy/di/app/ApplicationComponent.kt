@@ -6,7 +6,9 @@ import com.example.dishy.di.datamodule.DataModule
 import com.example.dishy.di.domainmodule.DomainModule
 import com.example.dishy.di.viewmodelmodule.ViewModelModule
 import com.example.dishy.presentation.fragment.BasketFragment
+import com.example.dishy.presentation.fragment.CheckoutScreenFragment
 import com.example.dishy.presentation.fragment.ChooseDishFragment
+import com.example.dishy.presentation.fragment.ChoosingASpecificDishFragment
 import com.example.dishy.presentation.fragment.CommonFragmentForDishes
 import com.example.dishy.presentation.fragment.DifferentDishesFragment
 import com.example.dishy.presentation.fragment.TypeDishFragment
@@ -22,6 +24,8 @@ interface ApplicationComponent {
     fun inject(fragment: DifferentDishesFragment)
     fun inject(fragment: TypeDishFragment)
     fun inject(fragmentForDishes: CommonFragmentForDishes)
+    fun inject(fragment: ChoosingASpecificDishFragment)
+    fun inject(fragment: CheckoutScreenFragment)
 
     @Component.Factory
     interface ApplicationComponentFactory {

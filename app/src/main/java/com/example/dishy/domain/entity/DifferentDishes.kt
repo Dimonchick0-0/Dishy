@@ -1,5 +1,6 @@
 package com.example.dishy.domain.entity
 
+import com.example.dishy.domain.emun.DifferentTypeDish
 import com.example.dishy.domain.emun.DishyType
 
 data class DifferentDishes(
@@ -9,7 +10,8 @@ data class DifferentDishes(
     val descriptionDish: String = UNDEFINED_DESCR,
     val priceDish: Int = UNDEFINED_PRICE,
     var basketID: Boolean = false,
-    val dishyType: DishyType
+    val dishyType: DishyType,
+    val differentTypeDish: DifferentTypeDish
 ) {
     companion object {
         private const val UNDEFINED_ID = 0

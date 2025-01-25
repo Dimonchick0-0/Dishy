@@ -1,7 +1,9 @@
 package com.example.dishy.di.viewmodelmodule
 
 import androidx.lifecycle.ViewModel
+import com.example.dishy.presentation.viewmodel.checkoutscreen.CheckoutScreenViewModel
 import com.example.dishy.presentation.viewmodel.firstscreen.ChooseDishViewModel
+import com.example.dishy.presentation.viewmodel.fivescreen.SpecificTypeDishViewModel
 import com.example.dishy.presentation.viewmodel.fourscreen.CommonForDishViewModel
 import com.example.dishy.presentation.viewmodel.secondscreen.BasketDishViewModel
 import com.example.dishy.presentation.viewmodel.thirdscreen.TypeDishViewModel
@@ -30,4 +32,14 @@ interface ViewModelModule {
     @ViewModelKey(CommonForDishViewModel::class)
     @Binds
     fun bindCommonForDishViewModel(impl: CommonForDishViewModel): ViewModel
+
+    @IntoMap
+    @ViewModelKey(SpecificTypeDishViewModel::class)
+    @Binds
+    fun bindSpecificTypeDishModel(impl: SpecificTypeDishViewModel): ViewModel
+
+    @IntoMap
+    @ViewModelKey(CheckoutScreenViewModel::class)
+    @Binds
+    fun bindCheckoutScreenModel(impl: CheckoutScreenViewModel): ViewModel
 }

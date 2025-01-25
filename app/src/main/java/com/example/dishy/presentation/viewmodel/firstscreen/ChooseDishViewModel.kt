@@ -34,7 +34,7 @@ class ChooseDishViewModel @Inject constructor(
                 priceDish = dish.priceDish,
                 basketID = true
             )
-            repository.add(newDish)
+            repository.addDishToBasket(newDish)
         }
     }
 
@@ -48,7 +48,7 @@ class ChooseDishViewModel @Inject constructor(
                 priceDish = differentDishes.priceDish,
                 basketID = true
             )
-            repository.add(newDish)
+            repository.addDishToBasket(newDish)
         }
     }
 }

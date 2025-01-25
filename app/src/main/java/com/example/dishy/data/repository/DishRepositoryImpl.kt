@@ -2,7 +2,6 @@ package com.example.dishy.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.dishy.data.DishAddingToBasket
 import com.example.dishy.data.datasoutce.LocalDataSourceImpl
 import com.example.dishy.data.listDish.DishyList
 import com.example.dishy.domain.entity.DifferentDishes
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 class DishRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSourceImpl
-) : DishRepository, DishAddingToBasket {
+) : DishRepository {
     private val dishListLdDish = MutableLiveData<List<Dish>>()
     private val dishListLdDifferentDishes = MutableLiveData<List<DifferentDishes>>()
     private val initDishList = DishyList()
@@ -25,11 +24,11 @@ class DishRepositoryImpl @Inject constructor(
         setList(initDishList.setListDish(), initDifferentDishes.setDifferentDishesList())
     }
 
-    override suspend fun add(dish: Dish) {
+    override suspend fun addDishToBasket(dish: Dish) {
         localDataSource.addDishToBasket(dish)
     }
 
-    override suspend fun add(differentDishes: DifferentDishes) {
+    override suspend fun addDishToBasket(differentDishes: DifferentDishes) {
         localDataSource.addDishToBasket(differentDishes)
     }
 

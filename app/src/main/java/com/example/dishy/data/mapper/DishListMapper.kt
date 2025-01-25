@@ -14,7 +14,8 @@ class DishListMapper @Inject constructor() {
         descriptionDish = dish.descriptionDish,
         priceDish = dish.priceDish,
         basketID = dish.basketID,
-        dishyType = dish.dishyType
+        dishyType = dish.dishyType,
+        differentTypeDish = dish.differentTypeDish
     )
 
     fun mapEntityToDbModel(differentDishes: DifferentDishes) = DishBasketDatabase(
@@ -24,6 +25,7 @@ class DishListMapper @Inject constructor() {
         descriptionDish = differentDishes.descriptionDish,
         priceDish = differentDishes.priceDish,
         basketID = differentDishes.basketID,
-        dishyType = differentDishes.dishyType
+        dishyType = differentDishes.dishyType,
+        differentTypeDish = differentDishes.differentTypeDish
     )
 }

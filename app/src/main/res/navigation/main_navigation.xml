@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_basketFragment_to_typeDishFragment"
             app:destination="@id/typeDishFragment" />
+        <action
+            android:id="@+id/action_basketFragment_to_scrollingFragment"
+            app:destination="@id/scrollingFragment" />
     </fragment>
     <fragment
         android:id="@+id/typeDishFragment"
@@ -60,5 +63,34 @@
         <argument
             android:name="dishy_type_enum"
             app:argType="com.example.dishy.domain.emun.DishyType" />
+        <action
+            android:id="@+id/action_commonFragmentForDishes_to_choosingASpecificDishFragment"
+            app:destination="@id/choosingASpecificDishFragment" />
+        <action
+            android:id="@+id/action_commonFragmentForDishes_to_basketFragment"
+            app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_commonFragmentForDishes_to_chooseDishFragment"
+            app:destination="@id/chooseDishFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/choosingASpecificDishFragment"
+        android:name="com.example.dishy.presentation.fragment.ChoosingASpecificDishFragment"
+        android:label="fragment_choosing_a_specific_dish"
+        tools:layout="@layout/fragment_choosing_a_specific_dish" >
+        <argument
+            android:name="specificalTypeDish"
+            app:argType="com.example.dishy.domain.emun.DifferentTypeDish" />
+        <action
+            android:id="@+id/action_choosingASpecificDishFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_choosingASpecificDishFragment_to_chooseDishFragment"
+            app:destination="@id/chooseDishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scrollingFragment"
+        android:name="com.example.dishy.presentation.fragment.CheckoutScreenFragment"
+        android:label="fragment_scrolling"
+        tools:layout="@layout/fragment_checkout_screen" />
 </navigation>
