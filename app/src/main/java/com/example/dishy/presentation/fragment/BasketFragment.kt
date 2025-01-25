@@ -56,6 +56,7 @@ class BasketFragment : Fragment(), ClearBackStack {
         deleteDishItem()
         observeViewModel()
         clearAllBackStackIsFromFragment()
+        launchCheckoutScreenFragment()
     }
 
     private fun initAdapter(context: Context) {
@@ -98,6 +99,12 @@ class BasketFragment : Fragment(), ClearBackStack {
 
     private fun launchFragmentTypeDish() {
         findNavController().navigate(R.id.action_basketFragment_to_typeDishFragment)
+    }
+
+    private fun launchCheckoutScreenFragment() {
+        binding.btnPlaceAnOrder.setOnClickListener {
+            findNavController().navigate(R.id.action_basketFragment_to_scrollingFragment)
+        }
     }
 
     override fun clearAllBackStackIsFromFragment() {

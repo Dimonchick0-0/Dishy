@@ -60,16 +60,16 @@
                 android:gravity="end"
                 android:text="Цена:"
                 android:textColor="#6716FA"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/differentDishPrice"
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="#6716FA"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
 

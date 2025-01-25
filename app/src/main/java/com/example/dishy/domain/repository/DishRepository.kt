@@ -14,4 +14,8 @@ interface DishRepository {
     suspend fun deleteDishItem(dish: Dish)
 
     suspend fun updateDishItem(dish: Dish)
+
+    suspend fun addDishToBasket(dish: Dish)
+
+    suspend fun addDishToBasket(differentDishes: DifferentDishes)
 }

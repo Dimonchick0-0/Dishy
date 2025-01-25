@@ -2,67 +2,67 @@ package com.example.dishy.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dishy.MyDishApplication
 import com.example.dishy.R
+import com.example.dishy.databinding.FragmentChoosingASpecificDishBinding
 import com.example.dishy.databinding.FragmentCommonForDishesBinding
-import com.example.dishy.domain.emun.DishyType
-import com.example.dishy.domain.entity.Dish
-import com.example.dishy.domain.entity.Dishy
 import com.example.dishy.presentation.interfacefragments.ClearBackStack
-import com.example.dishy.presentation.recycler.commonadapter.CommonAdapter
-import com.example.dishy.presentation.recycler.dishAdapter.DishAdapter
+import com.example.dishy.presentation.recycler.specificalTypeDish.SpecificTypeAdapter
 import com.example.dishy.presentation.viewmodel.ViewModelFactory
-import com.example.dishy.presentation.viewmodel.fourscreen.CommonForDishViewModel
+import com.example.dishy.presentation.viewmodel.fivescreen.SpecificTypeDishViewModel
 import javax.inject.Inject
 
-class CommonFragmentForDishes : Fragment(), ClearBackStack {
+class ChoosingASpecificDishFragment : Fragment(), ClearBackStack {
 
-    private var _binding: FragmentCommonForDishesBinding? = null
-    private val binding: FragmentCommonForDishesBinding
-        get() = _binding ?: throw RuntimeException("FragmentCommonForDishesBinding == null")
+    private var _binding: FragmentChoosingASpecificDishBinding? = null
+    private val binding: FragmentChoosingASpecificDishBinding
+        get() = _binding ?: throw RuntimeException("FragmentChoosingASpecificDishBinding == null")
 
     private val component by lazy {
         (requireActivity().application as MyDishApplication).component
     }
 
-    private val args by navArgs<CommonFragmentForDishesArgs>()
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var vm: CommonForDishViewModel
-
-    private lateinit var commonAdapter: CommonAdapter
+    private val args by navArgs<ChoosingASpecificDishFragmentArgs>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         component.inject(this)
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var vm: SpecificTypeDishViewModel
+
+    private lateinit var specificTypeAdapter: SpecificTypeAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCommonForDishesBinding.inflate(inflater, container, false)
+        _binding = FragmentChoosingASpecificDishBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm = ViewModelProvider(this, viewModelFactory)[CommonForDishViewModel::class]
+        vm = ViewModelProvider(this, viewModelFactory)[SpecificTypeDishViewModel::class.java]
         initAdapter(view.context)
-        switchingToASpecificTypeOfDish()
-        setupBtnNavMenu()
+        setupBtnNav()
         clearAllBackStackIsFromFragment()
+        addBasket()
     }
 
     override fun clearAllBackStackIsFromFragment() {
@@ -80,7 +80,7 @@ class CommonFragmentForDishes : Fragment(), ClearBackStack {
             })
     }
 
-    private fun setupBtnNavMenu() = with(binding) {
+    private fun setupBtnNav() = with(binding) {
         btnNavMenu.selectedItemId = R.id.dishSearch
         btnNavMenu.setOnItemSelectedListener {
             when (it.itemId) {
@@ -92,39 +92,35 @@ class CommonFragmentForDishes : Fragment(), ClearBackStack {
     }
 
     private fun launchFragmentBasket() {
-        findNavController().navigate(R.id.action_commonFragmentForDishes_to_basketFragment)
+        findNavController().navigate(R.id.action_choosingASpecificDishFragment_to_basketFragment)
     }
 
     private fun launchFragmentChoose() {
-        findNavController().navigate(R.id.action_commonFragmentForDishes_to_chooseDishFragment)
+        findNavController().navigate(R.id.action_choosingASpecificDishFragment_to_chooseDishFragment)
     }
 
     private fun initAdapter(context: Context) {
-        binding.rcvCommonDish.apply {
+        binding.rcvSpecifingDish.apply {
             layoutManager = LinearLayoutManager(context)
-            commonAdapter = CommonAdapter()
-            adapter = commonAdapter
+            specificTypeAdapter = SpecificTypeAdapter()
+            adapter = specificTypeAdapter
         }
-        setListTest()
+        setupList()
     }
 
-    private fun setListTest() {
+    private fun addBasket() {
+        specificTypeAdapter.addDishToBasketClickListener = {
+            vm.addToBasket(it)
+        }
+    }
+
+    private fun setupList() {
         filterDishType()
-        vm.dishListLD.observe(viewLifecycleOwner) { commonAdapter.submitList(it) }
+        vm.dishListLD.observe(viewLifecycleOwner) { specificTypeAdapter.submitList(it) }
     }
 
     private fun filterDishType() {
-        vm.determineTheTypeOfDish(args.dishyTypeEnum)
-    }
-
-    private fun switchingToASpecificTypeOfDish() {
-        commonAdapter.onItemClickListener = {
-            findNavController().apply {
-                val action = CommonFragmentForDishesDirections
-                    .actionCommonFragmentForDishesToChoosingASpecificDishFragment(it.differentTypeDish)
-                navigate(action)
-            }
-        }
+        vm.determineTheTypeOfDish(args.specificalTypeDish)
     }
 
     override fun onDestroy() {

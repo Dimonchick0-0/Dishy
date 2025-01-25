@@ -1,6 +1,7 @@
 package com.example.dishy.domain.entity
 
 import android.os.Parcelable
+import com.example.dishy.domain.emun.DifferentTypeDish
 import com.example.dishy.domain.emun.DishyType
 import kotlinx.parcelize.Parcelize
 
@@ -12,7 +13,8 @@ data class Dish (
     val descriptionDish: String = UNDEFINED_DESCR,
     val priceDish: Int = UNDEFINED_PRICE,
     var basketID: Boolean = false,
-    val dishyType: DishyType
+    val dishyType: DishyType,
+    val differentTypeDish: DifferentTypeDish
 ): Parcelable {
     companion object {
         private const val UNDEFINED_ID = 0
